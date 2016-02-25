@@ -80,7 +80,7 @@
     <span class="pl-k">catch</span> (e) {
         <span class="pl-c">// ...</span>
     }
-});</pre></div>
+})();</pre></div>
 
 <hr>
 
@@ -117,7 +117,60 @@
     <span class="pl-k">catch</span> (e) {
         <span class="pl-c">// ...</span>
     }
-});</pre></div>
+})();</pre></div>
+
+<hr>
+
+<h2>
+<a id="querying-the-dom" class="anchor" href="#querying-the-dom" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Querying the DOM</h2>
+
+<p>via CSS selectors</p>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">$myElement</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.some-class-name-here &gt; .another-class<span class="pl-pds">'</span></span>);</pre></div>
+
+<p><strong>Modern</strong> | Using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">querySelector|All</a></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">myElement</span> <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-en">querySelector</span>(<span class="pl-s"><span class="pl-pds">'</span>.some-class-name-here &gt; .another-class<span class="pl-pds">'</span></span>);</pre></div>
+
+<hr>
+
+<h2>
+<a id="elements-class" class="anchor" href="#elements-class" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Element's Class</h2>
+
+<p>add | remove | toggle</p>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-en">addClass</span>(<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);
+<span class="pl-en">$</span>(myElement).<span class="pl-en">removeClass</span>(<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);
+<span class="pl-en">$</span>(<span class="pl-smi">myElement</span>.<span class="pl-en">toggleClass</span>(<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);</pre></div>
+
+<p><strong>Modern</strong> | Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList">classList API</a></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-smi">classList</span>.<span class="pl-c1">add</span>(<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);
+<span class="pl-smi">myElement</span>.<span class="pl-smi">classList</span>.<span class="pl-en">remove</span>(<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);
+<span class="pl-smi">myElement</span>.<span class="pl-smi">classList</span>.<span class="pl-en">toggle</span>(<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);</pre></div>
+
+<hr>
+
+<h2>
+<a id="gettingsetting-attributes--properties" class="anchor" href="#gettingsetting-attributes--properties" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting/Setting Attributes &amp; Properties</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-en">prop</span>(<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);
+<span class="pl-en">$</span>(myElement).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>data-foo<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>);
+<span class="pl-en">$</span>(myElement).<span class="pl-c1">text</span>(<span class="pl-s"><span class="pl-pds">'</span>lorem ispum<span class="pl-pds">'</span></span>);
+<span class="pl-en">$</span>(myElement).<span class="pl-en">html</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;span&gt;lorem ipsum&lt;/span&gt;<span class="pl-pds">'</span></span>);</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-c1">id</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>;
+<span class="pl-smi">myElement</span>.<span class="pl-smi">dataset</span>.<span class="pl-smi">foo</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>;
+<span class="pl-smi">myElement</span>.<span class="pl-smi">textContent</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>lorem ipsum<span class="pl-pds">'</span></span>;
+<span class="pl-smi">myElement</span>.<span class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;span&gt;lorem ipsum&lt;/span&gt;<span class="pl-pds">'</span></span>;</pre></div>
 
 <hr>
 
