@@ -31,7 +31,9 @@
           <h1>
 <a id="its-2016-things-have-changed" class="anchor" href="#its-2016-things-have-changed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>It's 2016; Things Have Changed</h1>
 
-<p>"You Don't Need jQuery" is based on <a href="https://github.com/HubSpot/YouMightNotNeedjQuery">You Might Not Need jQuery</a>, but is updated to reflect new APIs, new methodologies, and better, more simplified examples. I'm not telling you to avoid using libraries, but I want you to be aware of the (new) native APIs that are available to you that, in some cases, are easier and more untuitive than those that jQuery (and others) have to offer.</p>
+<p>"You Don't Need jQuery" is based on <a href="https://github.com/HubSpot/YouMightNotNeedjQuery">You Might Not Need jQuery</a>, but is updated to reflect new APIs, new methodologies, and better, more simplified examples. </p>
+
+<p>I'm not telling you to avoid using libraries, but I want you to be aware of the (new) native APIs that are available to you that, in some cases, are easier and more intuitive than those that jQuery (and others) have to offer.</p>
 
 <hr>
 
@@ -131,11 +133,13 @@
 
 <p><strong>jQuery</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">myElement</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.some-class-name-here &gt; .another-class<span class="pl-pds">'</span></span>);</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">myElement</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>.foo<span class="pl-pds">'</span></span>);</pre></div>
 
 <p><strong>Modern</strong> | Using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">querySelector|All</a></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">myElement</span> <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-en">querySelector</span>(<span class="pl-s"><span class="pl-pds">'</span>.some-class-name-here &gt; .another-class<span class="pl-pds">'</span></span>);</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">myElement</span> <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-en">querySelector</span>(<span class="pl-s"><span class="pl-pds">'</span>.foo<span class="pl-pds">'</span></span>);
+<span class="pl-c">// or</span>
+<span class="pl-k">const</span> <span class="pl-c1">myMultipleElements</span> <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-en">querySelectorAll</span>(<span class="pl-s"><span class="pl-pds">'</span>.foo<span class="pl-pds">'</span></span>);</pre></div>
 
 <hr>
 
@@ -159,35 +163,169 @@
 <hr>
 
 <h2>
-<a id="gettingsetting-attributes--properties" class="anchor" href="#gettingsetting-attributes--properties" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting/Setting Attributes &amp; Properties</h2>
-
-<p>attributes | properties | text | html</p>
+<a id="gettingsetting-attributes" class="anchor" href="#gettingsetting-attributes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting/Setting Attributes</h2>
 
 <p><strong>jQuery</strong></p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">foo</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myElement).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);
-<span class="pl-en">$</span>(myElement).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>, foo);
+<span class="pl-en">$</span>(myElement).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>, foo);</pre></div>
 
-<span class="pl-en">$</span>(myElement).<span class="pl-en">prop</span>(<span class="pl-s"><span class="pl-pds">'</span>id<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);
-<span class="pl-en">$</span>(myElement).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>data-foo<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>);
-
-<span class="pl-en">$</span>(myElement).<span class="pl-c1">text</span>(<span class="pl-s"><span class="pl-pds">'</span>lorem ispum<span class="pl-pds">'</span></span>);
-<span class="pl-en">$</span>(myElement).<span class="pl-en">html</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;span&gt;lorem ipsum&lt;/span&gt;<span class="pl-pds">'</span></span>);</pre></div>
-
-<p><strong>Modern</strong> | Using native properties &amp; the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset">dataset API</a></p>
+<p><strong>Modern</strong></p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">foo</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-c1">getAttribute</span>(<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);
-<span class="pl-smi">myElement</span>.<span class="pl-c1">setAttribute</span>(<span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>, foo);
+<span class="pl-smi">myElement</span>.<span class="pl-c1">setAttribute</span>(<span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>, foo);</pre></div>
 
-<span class="pl-smi">myElement</span>.<span class="pl-c1">id</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>;
-<span class="pl-smi">myElement</span>.<span class="pl-smi">dataset</span>.<span class="pl-smi">foo</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>;
+<hr>
 
-<span class="pl-smi">myElement</span>.<span class="pl-smi">textContent</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>lorem ipsum<span class="pl-pds">'</span></span>;
+<h2>
+<a id="setting-text--html" class="anchor" href="#setting-text--html" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setting Text &amp; HTML</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-c1">text</span>(<span class="pl-s"><span class="pl-pds">'</span>lorem ispum<span class="pl-pds">'</span></span>);
+<span class="pl-en">$</span>(myElement).<span class="pl-en">html</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;span&gt;lorem ipsum&lt;/span&gt;<span class="pl-pds">'</span></span>);</pre></div>
+
+<p><strong>Modern</strong> | Using native properties</p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-smi">textContent</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>lorem ipsum<span class="pl-pds">'</span></span>;
 <span class="pl-smi">myElement</span>.<span class="pl-smi">innerHTML</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;span&gt;lorem ipsum&lt;/span&gt;<span class="pl-pds">'</span></span>;</pre></div>
 
 <hr>
 
-<p>WORK IN PROGRESS</p>
+<h2>
+<a id="data-attributes" class="anchor" href="#data-attributes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Attributes</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>data-foo<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>);</pre></div>
+
+<p><strong>Modern</strong> | Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset">dataset API</a></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-smi">dataset</span>.<span class="pl-smi">foo</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>;</pre></div>
+
+<hr>
+
+<h2>
+<a id="append-child--remove-element" class="anchor" href="#append-child--remove-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Append Child &amp; Remove Element</h2>
+
+<p>append | prepend | remove</p>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-en">append</span>(anotherElement);
+<span class="pl-en">$</span>(myElement).<span class="pl-en">prepend</span>(anotherElement);
+<span class="pl-en">$</span>(myElement).<span class="pl-en">remove</span>();</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-c1">appendChild</span>(anotherElement);
+<span class="pl-smi">myElement</span>.<span class="pl-c1">insertBefore</span>(anotherElement, <span class="pl-smi">myElement</span>.<span class="pl-c1">firstChild</span>);
+<span class="pl-smi">myElement</span>.<span class="pl-en">remove</span>();</pre></div>
+
+<hr>
+
+<h2>
+<a id="event-listeners" class="anchor" href="#event-listeners" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Event Listeners</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, e <span class="pl-k">=&gt;</span> { 
+    <span class="pl-c">// ... </span>
+});</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-en">addEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, e <span class="pl-k">=&gt;</span> { 
+    <span class="pl-c">// ... </span>
+});</pre></div>
+
+<hr>
+
+<h2>
+<a id="filter-elements" class="anchor" href="#filter-elements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Filter Elements</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myMultipleElements).<span class="pl-en">filter</span>(<span class="pl-s"><span class="pl-pds">'</span>.some-class-here<span class="pl-pds">'</span></span>);</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">Array</span>.<span class="pl-en">from</span>(myMultipleElements).<span class="pl-en">filter</span>(element <span class="pl-k">=&gt;</span> <span class="pl-smi">element</span>.<span class="pl-smi">classList</span>.<span class="pl-en">contains</span>(<span class="pl-s"><span class="pl-pds">'</span>some-class-here<span class="pl-pds">'</span></span>));</pre></div>
+
+<hr>
+
+<h2>
+<a id="each-element" class="anchor" href="#each-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Each Element</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myMultipleElements).<span class="pl-en">each</span>((<span class="pl-smi">i</span>, <span class="pl-smi">element</span>) <span class="pl-k">=&gt;</span> {
+    <span class="pl-c">// ...</span>
+});</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">Array</span>.<span class="pl-en">from</span>(myMultipleElements).<span class="pl-en">forEach</span>((<span class="pl-smi">element</span>, <span class="pl-smi">i</span>) <span class="pl-k">=&gt;</span> {
+    <span class="pl-c">// ...</span>
+});</pre></div>
+
+<hr>
+
+<h2>
+<a id="parent-element" class="anchor" href="#parent-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Parent Element</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">parent</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myElement).<span class="pl-c1">parent</span>();</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">parent</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-c1">parentNode</span>;</pre></div>
+
+<hr>
+
+<h2>
+<a id="children" class="anchor" href="#children" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Children</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">children</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myElement).<span class="pl-en">children</span>();</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">children</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-c1">childNodes</span>;</pre></div>
+
+<hr>
+
+<h2>
+<a id="siblings" class="anchor" href="#siblings" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Siblings</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">siblings</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myElement).<span class="pl-en">siblings</span>();</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">siblings</span> <span class="pl-k">=</span> <span class="pl-c1">Array</span>.<span class="pl-en">from</span>(<span class="pl-smi">myElement</span>.<span class="pl-c1">parentNode</span>.<span class="pl-c1">childNodes</span>).<span class="pl-en">filter</span>(element <span class="pl-k">=&gt;</span> element <span class="pl-k">!==</span> myElement);</pre></div>
+
+<hr>
+
+<h2>
+<a id="next--previous-sibling" class="anchor" href="#next--previous-sibling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Next &amp; Previous Sibling</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">next</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myElement).<span class="pl-c1">next</span>();
+<span class="pl-k">const</span> <span class="pl-c1">prev</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myElement).<span class="pl-en">prev</span>();</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">next</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-smi">nextElementSibling</span>;
+<span class="pl-k">const</span> <span class="pl-c1">prev</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-smi">previousElementSibling</span>;</pre></div>
+
+<hr>
+
+<p>WIP</p>
         </section>
 
         <aside id="sidebar">
