@@ -77,6 +77,39 @@
         <span class="pl-c">// ...</span>
     }
 });</pre></div>
+
+<h2>
+<a id="ajax-post" class="anchor" href="#ajax-post" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AJAX POST</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">$</span>.<span class="pl-en">ajax</span>({
+    url<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>path/to/whatever<span class="pl-pds">'</span></span>,
+    type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>POST<span class="pl-pds">'</span></span>,
+    contentType<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>application/json<span class="pl-pds">'</span></span>,
+    success<span class="pl-k">:</span> data <span class="pl-k">=&gt;</span> {
+        <span class="pl-c">// ...</span>
+    },
+    error<span class="pl-k">:</span> error <span class="pl-k">=&gt;</span> {
+        <span class="pl-c">// ...</span>
+    }
+});</pre></div>
+
+<p><strong>Modern</strong> | Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch API</a> and <a href="http://tc39.github.io/ecmascript-asyncawait/">async/await</a></p>
+
+<div class="highlight highlight-source-js"><pre>(<span class="pl-k">async</span> () <span class="pl-k">=&gt;</span> {
+    <span class="pl-k">try</span> {
+        <span class="pl-k">const</span> <span class="pl-c1">request</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-en">fetch</span>(<span class="pl-s"><span class="pl-pds">'</span>path/to/whatever<span class="pl-pds">'</span></span>, {
+            method<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>POST<span class="pl-pds">'</span></span>,
+            headers<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Headers</span>({ <span class="pl-s"><span class="pl-pds">'</span>Content-Type<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>application/json<span class="pl-pds">'</span></span> });
+        });
+        <span class="pl-k">const</span> <span class="pl-c1">data</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-smi">request</span>.<span class="pl-en">json</span>();
+        <span class="pl-c">// ...</span>
+    }
+    <span class="pl-k">catch</span> (e) {
+        <span class="pl-c">// ...</span>
+    }
+});</pre></div>
         </section>
 
         <aside id="sidebar">
