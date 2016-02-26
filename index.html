@@ -33,29 +33,38 @@
 
 <p>"You Don't Need jQuery" is based on <a href="https://github.com/HubSpot/YouMightNotNeedjQuery">You Might Not Need jQuery</a>, but is updated to reflect new APIs, new methodologies, and better, more simplified examples. </p>
 
-<p>I'm not telling you to avoid using libraries, but I want you to be aware of the (new) native APIs that are available to you that, in some cases, are easier and more intuitive than those that jQuery (and others) have to offer.</p>
+<p><strong>10 years after jQuery's initial release, the browser landscape has drastically changed.</strong></p>
+
+<p>The purpose of this is not to tell you that you shouldn't use jQuery, but rather to re-educate you on what exactly jQuery is useful for. The DOM, and other browser APIs, have been much better standardized, and many of the previous pitfalls of compatability no longer exist. While jQuery is still useful, it is less so than before, and it's important for you--the developer--to be familiar with the underlying APIs that libraries are abstracting.</p>
+
+<p>A lot of the new APIs and methodologies are much easier to understand, and are sometimes more coherent than those in libraries like jQuery.</p>
 
 <hr>
 
-<p>[...] Please take a moment to consider if you actually need jQuery as a dependency; maybe you can include a few lines of utility code, and forgo the requirement. If you're only targeting more modern browsers, you might not need anything more than what the browser ships with.</p>
+<p><em>[...]</em> Please take a moment to consider if you actually need jQuery as a dependency; maybe you can include a few lines of utility code, and forgo the requirement. If you're only targeting more modern browsers, you might not need anything more than what the browser ships with.</p>
 
-<p>[...] Some developers believe that jQuery is protecting us from a great demon of browser incompatibility when, in truth, [modern] browsers are pretty easy to deal with on their own.</p>
+<p><em>[...]</em> Some developers believe that jQuery is protecting us from a great demon of browser incompatibility when, in truth, <em>[modern]</em> browsers are pretty easy to deal with on their own.</p>
 
-<p><strong>- youmightnotneedjquery.com</strong></p>
-
-<hr>
-
-<h1>
-<a id="modern-browsers" class="anchor" href="#modern-browsers" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Modern Browsers</h1>
-
-<p>Browsers today are nothing like their legacy counter-parts. The "big three"--being Chrome, Firefox, and Edge--are what we call, "evergreen", meaning that they self-regulate updates, giving you the most updated engines available. "<strong>You Don't Need jQuery</strong>" only focuses on these modern, evergreen browsers. If you need to support more legacy browsers, like IE, try reading <a href="https://github.com/HubSpot/YouMightNotNeedjQuery">You Might Not Need jQuery</a> instead.</p>
+<p><strong>- YouMightNotNeedjQuery.com</strong></p>
 
 <hr>
 
 <h1>
 <a id="you-dont-need-jquery" class="anchor" href="#you-dont-need-jquery" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>You Don't Need jQuery</h1>
 
-<p>Most of the APIs that I'll be showing can be <a href="https://en.wikipedia.org/wiki/Polyfill">polyfilled</a>, meaning that you can recreate these features once, and then use all over your code. However, there are some syntax features (like async/await) that I use that will have to be "transpiled", using something like <a href="https://babeljs.io/">Babel</a></p>
+<p>Most of the APIs that I'll be showing can be <a href="https://en.wikipedia.org/wiki/Polyfill">polyfilled</a>, meaning that if the browser is modern, and supports the APIs, it will use those, but if the browser is legacy, it will update the APIs with the new features, and allow all browsers to work.</p>
+
+<p><strong>Modern features that can be polyfilled for legacy browsers:</strong></p>
+
+<ul>
+<li>Promise</li>
+<li>fetch</li>
+<li>classList</li>
+<li>Array.from</li>
+<li>More...</li>
+</ul>
+
+<p>Although a couple of the modern examples have more characters in their code, they should not deter you from trying to understand these new APIs. Read carefully, and try to understand what the code is doing so that you can better reflect on whether or not you should use a library.</p>
 
 <hr>
 
@@ -67,25 +76,23 @@
 <div class="highlight highlight-source-js"><pre><span class="pl-smi">$</span>.<span class="pl-en">ajax</span>({
     url<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>path/to/json<span class="pl-pds">'</span></span>,
     success<span class="pl-k">:</span> data <span class="pl-k">=&gt;</span> {
-        <span class="pl-c">// ...</span>
+        <span class="pl-c">// use 'data' here</span>
     },
     error<span class="pl-k">:</span> error <span class="pl-k">=&gt;</span> {
-        <span class="pl-c">// ...</span>
+        <span class="pl-c">// use 'error' here</span>
     }
 });</pre></div>
 
-<p><strong>Modern</strong> | Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch API</a> and <a href="http://tc39.github.io/ecmascript-asyncawait/">async/await</a></p>
+<p><strong>Modern</strong> | Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch API</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a></p>
 
-<div class="highlight highlight-source-js"><pre>(<span class="pl-k">async</span> () <span class="pl-k">=&gt;</span> {
-    <span class="pl-k">try</span> {
-        <span class="pl-k">const</span> <span class="pl-c1">request</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-en">fetch</span>(<span class="pl-s"><span class="pl-pds">'</span>path/to/json<span class="pl-pds">'</span></span>);
-        <span class="pl-k">const</span> <span class="pl-c1">data</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-smi">request</span>.<span class="pl-en">json</span>();
-        <span class="pl-c">// ...</span>
-    }
-    <span class="pl-k">catch</span> (e) {
-        <span class="pl-c">// ...</span>
-    }
-})();</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">fetch</span>(<span class="pl-s"><span class="pl-pds">'</span>/path/to/json<span class="pl-pds">'</span></span>)
+.<span class="pl-en">then</span>(response <span class="pl-k">=&gt;</span> <span class="pl-smi">response</span>.<span class="pl-en">json</span>())
+.<span class="pl-en">then</span>(data <span class="pl-k">=&gt;</span> {
+    <span class="pl-c">// use 'data' here</span>
+})
+.<span class="pl-en">catch</span>(error <span class="pl-k">=&gt;</span> {
+    <span class="pl-c">// use 'error' here</span>
+});</pre></div>
 
 <hr>
 
@@ -100,29 +107,27 @@
     contentType<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>application/json<span class="pl-pds">'</span></span>,
     data<span class="pl-k">:</span> <span class="pl-c1">JSON</span>.<span class="pl-en">stringify</span>(myObjectHere),
     success<span class="pl-k">:</span> data <span class="pl-k">=&gt;</span> {
-        <span class="pl-c">// ...</span>
+        <span class="pl-c">// use 'data' here</span>
     },
     error<span class="pl-k">:</span> error <span class="pl-k">=&gt;</span> {
-        <span class="pl-c">// ...</span>
+        <span class="pl-c">// use 'error' here</span>
     }
 });</pre></div>
 
-<p><strong>Modern</strong> | Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch API</a> and <a href="http://tc39.github.io/ecmascript-asyncawait/">async/await</a></p>
+<p><strong>Modern</strong> | Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch API</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a></p>
 
-<div class="highlight highlight-source-js"><pre>(<span class="pl-k">async</span> () <span class="pl-k">=&gt;</span> {
-    <span class="pl-k">try</span> {
-        <span class="pl-k">const</span> <span class="pl-c1">request</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-en">fetch</span>(<span class="pl-s"><span class="pl-pds">'</span>path/to/whatever<span class="pl-pds">'</span></span>, {
-            method<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>POST<span class="pl-pds">'</span></span>,
-            headers<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Headers</span>({ <span class="pl-s"><span class="pl-pds">'</span>Content-Type<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>application/json<span class="pl-pds">'</span></span> }),
-            body<span class="pl-k">:</span> <span class="pl-c1">JSON</span>.<span class="pl-en">stringify</span>(myObjectHere)
-        });
-        <span class="pl-k">const</span> <span class="pl-c1">data</span> <span class="pl-k">=</span> <span class="pl-k">await</span> <span class="pl-smi">request</span>.<span class="pl-en">json</span>();
-        <span class="pl-c">// ...</span>
-    }
-    <span class="pl-k">catch</span> (e) {
-        <span class="pl-c">// ...</span>
-    }
-})();</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">fetch</span>(<span class="pl-s"><span class="pl-pds">'</span>path/to/whatever<span class="pl-pds">'</span></span>, {
+    method<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>POST<span class="pl-pds">'</span></span>,
+    headers<span class="pl-k">:</span> <span class="pl-k">new</span> <span class="pl-en">Headers</span>({ <span class="pl-s"><span class="pl-pds">'</span>Content-Type<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>application/json<span class="pl-pds">'</span></span> }),
+    body<span class="pl-k">:</span> <span class="pl-c1">JSON</span>.<span class="pl-en">stringify</span>(myObjectHere)
+})
+.<span class="pl-en">then</span>(response <span class="pl-k">=&gt;</span> <span class="pl-smi">response</span>.<span class="pl-en">json</span>())
+.<span class="pl-en">then</span>(data <span class="pl-k">=&gt;</span> {
+    <span class="pl-c">// use 'data' here</span>
+})
+.<span class="pl-en">catch</span>(error <span class="pl-k">=&gt;</span> {
+    <span class="pl-c">// use 'error' here</span>
+});</pre></div>
 
 <hr>
 
@@ -163,7 +168,9 @@
 <hr>
 
 <h2>
-<a id="gettingsetting-attributes" class="anchor" href="#gettingsetting-attributes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting/Setting Attributes</h2>
+<a id="attributes" class="anchor" href="#attributes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Attributes</h2>
+
+<p>get | set</p>
 
 <p><strong>jQuery</strong></p>
 
@@ -178,7 +185,24 @@
 <hr>
 
 <h2>
-<a id="setting-text--html" class="anchor" href="#setting-text--html" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setting Text &amp; HTML</h2>
+<a id="inputs-value" class="anchor" href="#inputs-value" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Input's Value</h2>
+
+<p>get | set</p>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">value</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myElement).<span class="pl-en">val</span>();
+<span class="pl-en">$</span>(myElement).<span class="pl-en">val</span>(<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>);</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">value</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-c1">value</span>;
+<span class="pl-smi">myElement</span>.<span class="pl-c1">value</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>;</pre></div>
+
+<hr>
+
+<h2>
+<a id="text--html" class="anchor" href="#text--html" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Text &amp; HTML</h2>
 
 <p><strong>jQuery</strong></p>
 
@@ -197,11 +221,25 @@
 
 <p><strong>jQuery</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-en">attr</span>(<span class="pl-s"><span class="pl-pds">'</span>data-foo<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>);</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-c1">data</span>(<span class="pl-s"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>);</pre></div>
 
 <p><strong>Modern</strong> | Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dataset">dataset API</a></p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-smi">dataset</span>.<span class="pl-smi">foo</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span>;</pre></div>
+
+<hr>
+
+<h2>
+<a id="element-styles" class="anchor" href="#element-styles" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Element Styles</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-en">css</span>({ background<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>, color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>white<span class="pl-pds">'</span></span> });</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-c1">style</span>.<span class="pl-c1">background</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>;
+<span class="pl-smi">myElement</span>.<span class="pl-c1">style</span>.<span class="pl-c1">color</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>white<span class="pl-pds">'</span></span>;</pre></div>
 
 <hr>
 
@@ -227,17 +265,17 @@
 <h2>
 <a id="event-listeners" class="anchor" href="#event-listeners" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Event Listeners</h2>
 
+<p>add | remove</p>
+
 <p><strong>jQuery</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, e <span class="pl-k">=&gt;</span> { 
-    <span class="pl-c">// ... </span>
-});</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-en">on</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, myEventHandler);
+<span class="pl-en">$</span>(myElement).<span class="pl-en">off</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, myEventHandler);</pre></div>
 
 <p><strong>Modern</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-en">addEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, e <span class="pl-k">=&gt;</span> { 
-    <span class="pl-c">// ... </span>
-});</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-en">addEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, myEventHandler);
+<span class="pl-smi">myElement</span>.<span class="pl-en">removeEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>, myEventHandler);</pre></div>
 
 <hr>
 
@@ -250,7 +288,26 @@
 
 <p><strong>Modern</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-c1">Array</span>.<span class="pl-en">from</span>(myMultipleElements).<span class="pl-en">filter</span>(element <span class="pl-k">=&gt;</span> <span class="pl-smi">element</span>.<span class="pl-smi">classList</span>.<span class="pl-en">contains</span>(<span class="pl-s"><span class="pl-pds">'</span>some-class-here<span class="pl-pds">'</span></span>));</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">Array</span>.<span class="pl-en">from</span>(myMultipleElements).<span class="pl-en">filter</span>(x <span class="pl-k">=&gt;</span> <span class="pl-smi">x</span>.<span class="pl-smi">classList</span>.<span class="pl-en">contains</span>(<span class="pl-s"><span class="pl-pds">'</span>some-class-here<span class="pl-pds">'</span></span>));</pre></div>
+
+<hr>
+
+<h2>
+<a id="find-elements" class="anchor" href="#find-elements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Find Elements</h2>
+
+<p>from single | from multiple</p>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myElement).<span class="pl-c1">find</span>(<span class="pl-s"><span class="pl-pds">'</span>.some-class-here<span class="pl-pds">'</span></span>);
+<span class="pl-k">const</span> <span class="pl-c1">y</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myMultipleElements).<span class="pl-c1">find</span>(<span class="pl-s"><span class="pl-pds">'</span>.some-class-here<span class="pl-pds">'</span></span>);</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-en">querySelectorAll</span>(<span class="pl-s"><span class="pl-pds">'</span>.some-class-here<span class="pl-pds">'</span></span>);
+<span class="pl-c1">Array</span>.<span class="pl-en">from</span>(myMultipleElements).<span class="pl-en">forEach</span>(x <span class="pl-k">=&gt;</span> <span class="pl-c1">Array</span>.<span class="pl-en">from</span>(<span class="pl-smi">x</span>.<span class="pl-en">querySelectorAll</span>(<span class="pl-s"><span class="pl-pds">'</span>.some-class-here<span class="pl-pds">'</span></span>)).<span class="pl-en">forEach</span>(y <span class="pl-k">=&gt;</span> {
+    <span class="pl-c">// use 'y' here</span>
+}));</pre></div>
 
 <hr>
 
@@ -259,14 +316,14 @@
 
 <p><strong>jQuery</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myMultipleElements).<span class="pl-en">each</span>((<span class="pl-smi">i</span>, <span class="pl-smi">element</span>) <span class="pl-k">=&gt;</span> {
-    <span class="pl-c">// ...</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myMultipleElements).<span class="pl-en">each</span>((<span class="pl-smi">i</span>, <span class="pl-smi">x</span>) <span class="pl-k">=&gt;</span> {
+    <span class="pl-c">// use 'x' here</span>
 });</pre></div>
 
 <p><strong>Modern</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-c1">Array</span>.<span class="pl-en">from</span>(myMultipleElements).<span class="pl-en">forEach</span>((<span class="pl-smi">element</span>, <span class="pl-smi">i</span>) <span class="pl-k">=&gt;</span> {
-    <span class="pl-c">// ...</span>
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">Array</span>.<span class="pl-en">from</span>(myMultipleElements).<span class="pl-en">forEach</span>((<span class="pl-smi">x</span>, <span class="pl-smi">i</span>) <span class="pl-k">=&gt;</span> {
+     <span class="pl-c">// use 'x' here</span>
 });</pre></div>
 
 <hr>
@@ -280,7 +337,20 @@
 
 <p><strong>Modern</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">parent</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-c1">parentNode</span>;</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">parent</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-smi">parentElement</span>;</pre></div>
+
+<hr>
+
+<h2>
+<a id="all-parents" class="anchor" href="#all-parents" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>All Parents</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myMultipleElements).<span class="pl-en">parents</span>();</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">parents</span> <span class="pl-k">=</span> <span class="pl-c1">Array</span>.<span class="pl-en">from</span>(myMultipleElements).<span class="pl-en">map</span>(x <span class="pl-k">=&gt;</span> <span class="pl-smi">x</span>.<span class="pl-smi">parentElement</span>);</pre></div>
 
 <hr>
 
@@ -293,7 +363,7 @@
 
 <p><strong>Modern</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">children</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-c1">childNodes</span>;</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">children</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-smi">children</span>;</pre></div>
 
 <hr>
 
@@ -306,7 +376,7 @@
 
 <p><strong>Modern</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">siblings</span> <span class="pl-k">=</span> <span class="pl-c1">Array</span>.<span class="pl-en">from</span>(<span class="pl-smi">myElement</span>.<span class="pl-c1">parentNode</span>.<span class="pl-c1">childNodes</span>).<span class="pl-en">filter</span>(element <span class="pl-k">=&gt;</span> element <span class="pl-k">!==</span> myElement);</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">siblings</span> <span class="pl-k">=</span> <span class="pl-c1">Array</span>.<span class="pl-en">from</span>(<span class="pl-smi">myElement</span>.<span class="pl-smi">parentElement</span>.<span class="pl-smi">children</span>).<span class="pl-en">filter</span>(x <span class="pl-k">=&gt;</span> x <span class="pl-k">!==</span> myElement);</pre></div>
 
 <hr>
 
@@ -322,6 +392,21 @@
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">next</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-smi">nextElementSibling</span>;
 <span class="pl-k">const</span> <span class="pl-c1">prev</span> <span class="pl-k">=</span> <span class="pl-smi">myElement</span>.<span class="pl-smi">previousElementSibling</span>;</pre></div>
+
+<hr>
+
+<h2>
+<a id="hide--show-element" class="anchor" href="#hide--show-element" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hide &amp; Show Element</h2>
+
+<p><strong>jQuery</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-en">$</span>(myElement).<span class="pl-en">hide</span>();
+<span class="pl-en">$</span>(myElement).<span class="pl-en">show</span>();</pre></div>
+
+<p><strong>Modern</strong></p>
+
+<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-c1">style</span>.<span class="pl-c1">display</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>none<span class="pl-pds">'</span></span>;
+<span class="pl-smi">myElement</span>.<span class="pl-c1">style</span>.<span class="pl-c1">display</span> <span class="pl-k">=</span> <span class="pl-c1">null</span>;</pre></div>
 
 <hr>
 
