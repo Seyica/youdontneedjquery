@@ -61,6 +61,7 @@
 <li>fetch</li>
 <li>classList</li>
 <li>Array.from</li>
+<li>Object.assign</li>
 <li>More...</li>
 </ul>
 
@@ -238,7 +239,9 @@
 
 <p><strong>Modern</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">myElement</span>.<span class="pl-c1">style</span>.<span class="pl-c1">background</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>;
+<div class="highlight highlight-source-js"><pre><span class="pl-c1">Object</span>.<span class="pl-en">assign</span>(<span class="pl-smi">myElement</span>.<span class="pl-c1">style</span>, { background<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>, color<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>white<span class="pl-pds">'</span></span> });
+<span class="pl-c">// or</span>
+<span class="pl-smi">myElement</span>.<span class="pl-c1">style</span>.<span class="pl-c1">background</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>red<span class="pl-pds">'</span></span>;
 <span class="pl-smi">myElement</span>.<span class="pl-c1">style</span>.<span class="pl-c1">color</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>white<span class="pl-pds">'</span></span>;</pre></div>
 
 <hr>
@@ -344,11 +347,11 @@
 
 <p><strong>jQuery</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myMultipleElements).<span class="pl-en">parents</span>();</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">x</span> <span class="pl-k">=</span> <span class="pl-en">$</span>(myMultipleElements).<span class="pl-en">parents</span>(<span class="pl-s"><span class="pl-pds">'</span>.foo<span class="pl-pds">'</span></span>);</pre></div>
 
 <p><strong>Modern</strong></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">parents</span> <span class="pl-k">=</span> <span class="pl-c1">Array</span>.<span class="pl-en">from</span>(myMultipleElements).<span class="pl-en">map</span>(x <span class="pl-k">=&gt;</span> <span class="pl-smi">x</span>.<span class="pl-smi">parentElement</span>);</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">const</span> <span class="pl-c1">parents</span> <span class="pl-k">=</span> <span class="pl-c1">Array</span>.<span class="pl-en">from</span>(myMultipleElements).<span class="pl-en">map</span>(x <span class="pl-k">=&gt;</span> <span class="pl-smi">x</span>.<span class="pl-en">closest</span>(<span class="pl-s"><span class="pl-pds">'</span>.foo<span class="pl-pds">'</span></span>));</pre></div>
 
 <hr>
 
