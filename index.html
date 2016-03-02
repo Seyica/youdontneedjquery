@@ -1,34 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <meta charset="UTF-8">
+    <title>You Don&#39;t Need jQuery by ndugger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
-    <title>You Don&#39;t Need jQuery by ndugger</title>
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>You Don&#39;t Need jQuery</h1>
-        <h2>The next evolutive state of, &quot;You Might Not Need jQuery&quot;, because you definitely don&#39;t need jQuery.</h2>
-        <a href="https://github.com/ndugger/youdontneedjquery" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+    <section class="page-header">
+      <h1 class="project-name">You Don&#39;t Need jQuery</h1>
+      <h2 class="project-tagline">The next evolutive state of, &quot;You Might Not Need jQuery&quot;, because you definitely don&#39;t need jQuery.</h2>
+      <a href="https://github.com/ndugger/youdontneedjquery" class="btn">View on GitHub</a>
+      <a href="https://github.com/ndugger/youdontneedjquery/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/ndugger/youdontneedjquery/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
+    <section class="main-content">
+      <h1>
 <a id="its-2016-things-have-changed" class="anchor" href="#its-2016-things-have-changed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>It's 2016; Things Have Changed</h1>
 
 <p>"You Don't Need jQuery" is based on <a href="https://github.com/HubSpot/YouMightNotNeedjQuery">You Might Not Need jQuery</a>, but is updated to reflect new APIs, new methodologies, and better, more simplified examples. </p>
@@ -72,9 +63,20 @@
 <h2>
 <a id="ajax-get" class="anchor" href="#ajax-get" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>AJAX GET</h2>
 
-<p><strong>jQuery</strong></p>
+<p>Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch API</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a></p>
 
-<div class="highlight highlight-source-js"><pre><span class="pl-smi">$</span>.<span class="pl-en">ajax</span>({
+<table width="100%">
+    <thead>
+        <tr>
+            <th>jQuery</th>
+            <th>Modern</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div class="highlight highlight-source-js"><pre>
+<span class="pl-smi">$</span>.<span class="pl-en">ajax</span>({
     url<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>path/to/json<span class="pl-pds">'</span></span>,
     success<span class="pl-k">:</span> data <span class="pl-k">=&gt;</span> {
         <span class="pl-c">// use 'data' here</span>
@@ -82,18 +84,24 @@
     error<span class="pl-k">:</span> error <span class="pl-k">=&gt;</span> {
         <span class="pl-c">// use 'error' here</span>
     }
-});</pre></div>
-
-<p><strong>Modern</strong> | Using the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch API</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a></p>
-
-<div class="highlight highlight-source-js"><pre><span class="pl-en">fetch</span>(<span class="pl-s"><span class="pl-pds">'</span>/path/to/json<span class="pl-pds">'</span></span>)
+});
+                </pre></div>
+            </td>
+            <td>
+                <div class="highlight highlight-source-js"><pre>
+<span class="pl-en">fetch</span>(<span class="pl-s"><span class="pl-pds">'</span>/path/to/json<span class="pl-pds">'</span></span>)
 .<span class="pl-en">then</span>(response <span class="pl-k">=&gt;</span> <span class="pl-smi">response</span>.<span class="pl-en">json</span>())
 .<span class="pl-en">then</span>(data <span class="pl-k">=&gt;</span> {
     <span class="pl-c">// use 'data' here</span>
 })
 .<span class="pl-en">catch</span>(error <span class="pl-k">=&gt;</span> {
     <span class="pl-c">// use 'error' here</span>
-});</pre></div>
+});
+                </pre></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 <hr>
 
@@ -412,24 +420,14 @@
 <hr>
 
 <p><strong>This repo of knowledge is a work in progress; if you'd like to contribute, please submit an issue or a pull request.</strong></p>
-        </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/ndugger/youdontneedjquery/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/ndugger/youdontneedjquery/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/ndugger/youdontneedjquery">You Don&#39;t Need jQuery</a> is maintained by <a href="https://github.com/ndugger">ndugger</a>.</span>
 
-          <p class="repo-owner"><a href="https://github.com/ndugger/youdontneedjquery"></a> is maintained by <a href="https://github.com/ndugger">ndugger</a>.</p>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
 
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
-    </div>
+    </section>
 
   
   </body>
